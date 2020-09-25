@@ -28,7 +28,7 @@ if ( isset( $_SERVER['HTTP_REFERER'] ) && strpos( $_SERVER['HTTP_REFERER'], '850
 
 			//The data you want to send via POST
 			$fields = [
-			    'secret'      => '6LcVVbsUAAAAAGV0w-nXxFuIoVbQOQ_NycbQO1wn',
+			    'secret'      => 'SECRET',
 			    'response' => $captcha,
 			    'remoteip'         => $_SERVER['REMOTE_ADDR']
 			];
@@ -61,18 +61,15 @@ if ( isset( $_SERVER['HTTP_REFERER'] ) && strpos( $_SERVER['HTTP_REFERER'], '850
 			    //Server settings
 			//    $mail->SMTPDebug = 2;                                 // Enable verbose debug output
 			    $mail->isSMTP();                                      // Set mailer to use SMTP
-			    $mail->Host = 'mocha3020.mochahost.com';  // Specify main and backup SMTP servers
+			    $mail->Host = 'HOST';  // Specify main and backup SMTP servers
 			    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-			    $mail->Username = 'contact@850route28.com';                 // SMTP username
-			    $mail->Password = 'Ohhahx4b';                           // SMTP password
+			    $mail->Username = 'user@';                 // SMTP username
+			    $mail->Password = 'pasword';                           // SMTP password
 			    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
 			    $mail->Port = 465;                                    // TCP port to connect to
 
 			    //Recipients
-			    $mail->setFrom('contact@850route28.com', '850route28');
-			    $mail->addAddress('luis@logicaldesign.pe', 'Luis');     // Add a recipient
-			    $mail->addAddress('raleigh@raleighgreeninc.com', 'Raleigh');     // Add a recipient
-			    $mail->addAddress('contact@850route28.com', '850route28');     // Add a recipient
+			    $mail->setFrom('contact@dom', 'Name');
 			//    $mail->addAddress('ellen@example.com');               // Name is optional
 			//    $mail->addReplyTo('info@example.com', 'Information');
 			//    $mail->addCC('cc@example.com');
@@ -84,7 +81,7 @@ if ( isset( $_SERVER['HTTP_REFERER'] ) && strpos( $_SERVER['HTTP_REFERER'], '850
 
 			    //Content
 			    $mail->isHTML(true);                                  // Set email format to HTML
-			    $mail->Subject = 'Message for 850 Route 28 LLC';
+			    $mail->Subject = 'The subject';
 			    $mail->Body    = 'First Name: ' . $_POST['first_name'] .'<br>
 			    					Last Name : ' . $_POST['last_name'] . '<br>
 			    					Email : ' . $_POST['email'] . '<br>
