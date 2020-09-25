@@ -1,1 +1,2 @@
-# php_static_boilerplate
+# basic-static-site-boilerplate
+Basic static PHP site, no database
