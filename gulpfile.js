@@ -1,31 +1,25 @@
-var chokidar = require('chokidar');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const del = require('del');
 
-var sassSources = ['assets/sass/style.scss']
-
-var gulp = require('gulp'),
-  minifyCSS = require('gulp-minify-css'),
-  sass = require('gulp-sass')
-
-gulp.task( 'default', [ 'compile' ] )
-
-gulp.task('compile', function(){
-  return gulp.src( sassSources )
-    .pipe(sass())
-    .pipe(minifyCSS({}))
-    .pipe(gulp.dest('./css/'))
-})
-
-gulp.task('watch', function () {
-  var watcher = chokidar.watch('assets/sass/');
-  watcher.on('ready', function () {
-    watcher.on('all', function (e, path) {
-
-    return gulp.src( sassSources )
-    .pipe(sass())
-    .pipe(minifyCSS({}))
-    .pipe(gulp.dest('./css/'))
-
-    
-    })
-  })
+gulp.task('styles', () => {
+    return gulp.src('sass/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./css/'));
 });
+
+gulp.task('clean', () => {
+    return del([
+        'css/main.css',
+    ]);
+});
+
+gulp.task('watch', () => {
+  gulp.watch('sass/**/*.scss', (done) => {
+      gulp.series(['clean', 'styles'])(done);
+  });
+});
+
+gulp.task('default', gulp.series(['watch']));
+
+
